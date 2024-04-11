@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', [ComicController::class, 'index'])->name('home');
+// Route::get('/comics', [ComicController::class, 'show'])->name('comic.show');
+
+// posso creare direttamente una rotta che si collega al 'resource Controlloer'
+// in automatico le sue funzioni sono STANDARDIZZATE
+Route::resource('comics', ComicController::class);
+
