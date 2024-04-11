@@ -38,9 +38,16 @@ class ComicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    // al posto di passare come parametro alla funzione show() 'string $id', posso passare
+    // direttamente Comic ('Comic $comic')
+    public function show(Comic $comic)
+    { 
+        // dd($comic);
+
+        // ritorno la vista 'show.blade.php' passando direttamente il parametro
+        // $comic. questo ci permette di restituire un 'error 404' quando il comic
+        // che stiamo cercando non esiste
+        return view('comic.show', compact('comic'));
     }
 
     /**

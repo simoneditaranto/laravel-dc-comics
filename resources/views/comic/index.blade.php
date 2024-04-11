@@ -7,7 +7,7 @@
         <ul>
             @foreach($comics as $comic)
                 <li>{{$comic}}</li>
-                <a href="#">Visualizza</a>
+                <a href="{{route('comics.show', $comic->id)}}">Visualizza</a>
             @endforeach
         </ul>
     </div>
