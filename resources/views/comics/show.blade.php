@@ -6,6 +6,53 @@
 
         <p>{{$comic->description}}</p>
 
+        <div class="comic-info d-flex align-items-center gap-5">
+            <div class="comic-thumb">
+
+                <img src="{{$comic->thumb}}" alt="">
+
+            </div>
+
+            <div class="comic-details">
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Data d'uscita</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Serie</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{$comic->price}}</td>
+                        <td>{{$comic->sale_date}}</td>
+                        <td>{{$comic->type}}</td>
+                        <td>{{$comic->series}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Artisti</th>
+                        <th scope="col">Scrittori</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{$comic->artists}}</td>
+                        <td>{{$comic->writers}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
         <button class="btn btn-warning">
             <a href="{{route('comics.edit', $comic->id)}}">Modifica</a>
         </button>
