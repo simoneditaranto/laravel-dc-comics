@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -32,6 +33,10 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        // utilizzo la funzione 'validation'
+        $this->validation($request->all());
+
         $newComic = new Comic();
         
         // dd($request);
@@ -112,4 +117,23 @@ class ComicController extends Controller
         return redirect()->route('comics.index');
 
     }
+
+    // creo un metodo che si iccupa della validazione
+    // e comunicazione dei messaggi di errore
+    private function validation($data) {
+        
+        $validator = Validator::make($data, [
+            'title' => 'required|max:255',
+            'description' => 'nullable|max:5000',
+            'thumb' => 'nullable|max:255',
+            'price' => 'required|max:10',
+            'series' => 'required|max:20',
+            'sales_date' => 'required|date',
+            'type' => 'required|max:20',
+            'artists' => 'nullable|max:1000',
+            'writers' => 'nullable|max:1000',
+        ])->validate();
+
+    }
+
 }
