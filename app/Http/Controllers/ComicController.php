@@ -35,6 +35,7 @@ class ComicController extends Controller
     {
 
         // utilizzo la funzione 'validation'
+        // dd($request->all());
         $this->validation($request->all());
 
         $newComic = new Comic();
@@ -86,6 +87,7 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $this->validation($request->all());
         
         $comic->title = $request->title;
         $comic->description = $request->description;
@@ -127,9 +129,9 @@ class ComicController extends Controller
             'description' => 'nullable|max:5000',
             'thumb' => 'nullable|max:255',
             'price' => 'required|max:10',
-            'series' => 'required|max:20',
-            'sales_date' => 'required|date',
-            'type' => 'required|max:20',
+            'series' => 'required|max:50',
+            'sale_date' => 'required|date_format:Y-m-d',
+            'type' => 'required|max:50',
             'artists' => 'nullable|max:1000',
             'writers' => 'nullable|max:1000',
         ])->validate();
