@@ -125,6 +125,7 @@ class ComicController extends Controller
     private function validation($data) {
         
         $validator = Validator::make($data, [
+
             'title' => 'required|max:255',
             'description' => 'nullable|max:5000',
             'thumb' => 'nullable|max:255',
@@ -133,7 +134,18 @@ class ComicController extends Controller
             'sale_date' => 'required|date_format:Y-m-d',
             'type' => 'required|max:50',
             'artists' => 'nullable|max:1000',
-            'writers' => 'nullable|max:1000',
+            'writers' => 'required|max:1000',
+        ], 
+        [
+            'title.required' => 'Il campo Titolo è obbligatorio',
+            'price.required' => 'Inserire un prezzo',
+            'series.required' => 'Inserire una serie',
+            'sale_date.required' => 'La data è obbligatoria',
+            'type.required' => 'Inserire il tipo di fumetto',
+            'writers.required' => 'Inserire gli scrittori',
+            // 'required' => 'Il campo :attribute è obbligatorio',
+            'max' => 'Il campo :attribute può contere al massimo :max caratteri',
+            'sale_date.date_format' => 'La data non è del formato giusto, inserire una data con il formato: YYYY-dd-mm',
         ])->validate();
 
     }
