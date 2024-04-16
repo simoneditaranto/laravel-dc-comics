@@ -104,6 +104,10 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Salva</button>
+
+        <button type="button" class="btn btn-warning">
+            <a href="{{route('comics.show', $comic->id)}}">Annulla</a>
+        </button>
     </form>
 
 </div>

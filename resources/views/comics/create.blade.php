@@ -105,6 +105,10 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Salva</button>
+
+        <button type="button" class="btn btn-warning">
+            <a href="/comics">Annulla</a>
+        </button>
     </form>
 
 </div>

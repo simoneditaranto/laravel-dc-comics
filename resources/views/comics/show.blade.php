@@ -53,6 +53,10 @@
 
         </div>
 
+        <button type="button" class="btn btn-outline-primary">
+          <a href="/comics">Torna ai fumetti</a>
+        </button>
+
         <button class="btn btn-warning">
             <a href="{{route('comics.edit', $comic->id)}}">Modifica</a>
         </button>
