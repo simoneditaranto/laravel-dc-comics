@@ -50,7 +50,9 @@ class ComicController extends Controller
         $newComic->sale_date = $request->sale_date;
         $newComic->type = $request->type;
         $newComic->artists = $request->artists;
-        $newComic->writers = $request->artists;
+        $newComic->writers = $request->writers;
+
+        // dd($newComic);
 
         $newComic->save();
 
@@ -97,7 +99,7 @@ class ComicController extends Controller
         $comic->sale_date = $request->sale_date;
         $comic->type = $request->type;
         $comic->artists = $request->artists;
-        $comic->writers = $request->artists;
+        $comic->writers = $request->writers;
 
         $comic->save();
 
