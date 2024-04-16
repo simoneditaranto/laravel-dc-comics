@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -31,12 +32,12 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
+        // $this->validation($request->all());
 
-        // utilizzo la funzione 'validation'
-        // dd($request->all());
-        $this->validation($request->all());
+        // aggiungo la validazione creata in StoreComicRequest
+        $request->validated();
 
         $newComic = new Comic();
         
@@ -87,9 +88,10 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(StoreComicRequest $request, Comic $comic)
     {
-        $this->validation($request->all());
+        // $this->validation($request->all());
+        $request->validated();
         
         $comic->title = $request->title;
         $comic->description = $request->description;
@@ -122,34 +124,7 @@ class ComicController extends Controller
 
     }
 
-    // creo un metodo che si iccupa della validazione
-    // e comunicazione dei messaggi di errore
-    private function validation($data) {
-        
-        $validator = Validator::make($data, [
-
-            'title' => 'required|max:255',
-            'description' => 'nullable|max:5000',
-            'thumb' => 'nullable|max:255',
-            'price' => 'required|max:10',
-            'series' => 'required|max:50',
-            'sale_date' => 'required|date_format:Y-m-d',
-            'type' => 'required|max:50',
-            'artists' => 'nullable|max:1000',
-            'writers' => 'required|max:1000',
-        ], 
-        [
-            'title.required' => 'Il campo Titolo è obbligatorio',
-            'price.required' => 'Inserire un prezzo',
-            'series.required' => 'Inserire una serie',
-            'sale_date.required' => 'La data è obbligatoria',
-            'type.required' => 'Inserire il tipo di fumetto',
-            'writers.required' => 'Inserire gli scrittori',
-            // 'required' => 'Il campo :attribute è obbligatorio',
-            'max' => 'Il campo :attribute può contere al massimo :max caratteri',
-            'sale_date.date_format' => 'La data non è del formato giusto, inserire una data con il formato: YYYY-dd-mm',
-        ])->validate();
-
-    }
+    // metodo che si occupa della validazione spostato
+    // in StoreComicReques
 
 }
