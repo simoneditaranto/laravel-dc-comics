@@ -12,4 +12,7 @@ class Comic extends Model
 
     // aggiungo il Trait relativo al SoftDelete
     use SoftDeletes;
+
+    // aggiungo l'autoriempimento dei campi
+    protected $fillable = ['title', 'description', 'thumb', 'price', 'series', 'sale_date', 'type', 'artists', 'writers'];
 }

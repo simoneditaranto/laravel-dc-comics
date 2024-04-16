@@ -39,22 +39,12 @@ class ComicController extends Controller
         // aggiungo la validazione creata in StoreComicRequest
         $request->validated();
 
-        $newComic = new Comic();
-        
         // dd($request);
-
-        $newComic->title = $request->title;
-        $newComic->description = $request->description;
-        $newComic->thumb = $request->thumb;
-        $newComic->price = $request->price;
-        $newComic->series = $request->series;
-        $newComic->sale_date = $request->sale_date;
-        $newComic->type = $request->type;
-        $newComic->artists = $request->artists;
-        $newComic->writers = $request->writers;
-
+              
+        $newComic = new Comic();
+        //utilizzo il metodo fill() appena definito nel Model
+        $newComic->fill($request->all());
         // dd($newComic);
-
         $newComic->save();
 
         return redirect()->route('comics.index');
@@ -93,16 +83,8 @@ class ComicController extends Controller
         // $this->validation($request->all());
         $request->validated();
         
-        $comic->title = $request->title;
-        $comic->description = $request->description;
-        $comic->thumb = $request->thumb;
-        $comic->price = $request->price;
-        $comic->series = $request->series;
-        $comic->sale_date = $request->sale_date;
-        $comic->type = $request->type;
-        $comic->artists = $request->artists;
-        $comic->writers = $request->writers;
-
+        $comic->update($request->all());
+        // salvo l'elemento
         $comic->save();
 
         // reindirizzo l'utente
